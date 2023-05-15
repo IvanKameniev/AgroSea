@@ -13,35 +13,35 @@ export default function App() {
     }});
 
   const [code,setCode] = useState(null)
-  const [key,setKey] = useState(null)
+    const [key,setKey] = useState(null)
 
-  const magicResetNumber = 43210;
-  const magicDeactivateNumber = 54321;
-  const magicNumber = 32014;
-  // const magicResetDec = 1473;
+    const magicResetNumber = 43210;
+    const magicDeactivateNumber = 54321;
+    const magicNumber = 32014;
+    // const magicResetDec = 1473;
 
   const onSubmit = data => {
-    setCode((magicDeactivateNumber - Number(data.code)) || magicNumber)
-    setKey((magicResetNumber - Number(data.code)) || magicNumber)
+      setCode((magicDeactivateNumber - Number(data.code)) || magicNumber)
+      setKey((magicResetNumber - Number(data.code)) || magicNumber)
   }
 
   const handleReset = () => {
-    resetField("code")
-    setCode(null)
-    setKey(null)
+      resetField("code")
+      setCode(null)
+      setKey(null)
   }
 
   const handleValidate = (value) => {
-    if (value?.length !== 5) {
-      return 'Must be five digits'
-    }
-    if (isNaN(Number(value)) || Number(value) >= magicResetNumber) {
-      return 'Invalid argument'
-    }
+      if (value?.length !== 5) {
+          return 'Must be five digits'
+      }
+      if (isNaN(Number(value)) || Number(value) >= magicResetNumber) {
+          return 'Invalid argument'
+      }
   }
 
   return (
-      <View style={styles.container}>
+    <View style={styles.container}>
         <Image
             style={styles.logo}
             source={require('./assets/Agrosea_logo.png')}
@@ -49,44 +49,44 @@ export default function App() {
 
         {(!code || !key) &&
             <>
-              <Text style={styles.title}>Enter trial key</Text>
-              <Controller
-                  control={control}
-                  rules={{ required: 'The field is required', validate: handleValidate} }
-                  render={({ field: { onChange, onBlur, value } }) => (
-                      <TextInput
-                          placeholder={' X X X X X'}
-                          style={styles.input}
-                          onBlur={onBlur}
-                          onChangeText={onChange}
-                          keyboardType="numeric"
-                          value={value}
-                      />
-                  )}
-                  name="code"
-              />
-              {!!errors.code?.message &&  <Text style={styles.error}>{errors.code?.message}</Text>}
-              <TouchableOpacity
-                  style={styles.button}
-                  title="Generate"
-                  onPress={handleSubmit(onSubmit)}
-              >
-                <Text style={styles.buttonText}>Generate</Text>
-              </TouchableOpacity>
+                <Text style={styles.title}>Enter trial key</Text>
+                <Controller
+                    control={control}
+                    rules={{ required: 'The field is required', validate: handleValidate} }
+                    render={({ field: { onChange, onBlur, value } }) => (
+                        <TextInput
+                            placeholder={' X X X X X'}
+                            style={styles.input}
+                            onBlur={onBlur}
+                            onChangeText={onChange}
+                            keyboardType="numeric"
+                            value={value}
+                        />
+                    )}
+                    name="code"
+                />
+                {!!errors.code?.message &&  <Text style={styles.error}>{errors.code?.message}</Text>}
+                <TouchableOpacity
+                    style={styles.button}
+                    title="Generate"
+                    onPress={handleSubmit(onSubmit)}
+                >
+                    <Text style={styles.buttonText}>Generate</Text>
+                </TouchableOpacity>
 
             </>
         }
 
         {!!code &&
             <>
-              <Text style={styles.title}>Key deactivation trial</Text>
-              <Text style={styles.result}>{code}</Text>
+                <Text style={styles.title}>Key deactivation trial</Text>
+                <Text style={styles.result}>{code}</Text>
             </>
         }
         {!!key &&
             <>
-              <Text style={styles.title}>Key prolongation trial</Text>
-              <Text style={styles.result}>{key}</Text>
+                <Text style={styles.title}>Key prolongation trial</Text>
+                <Text style={styles.result}>{key}</Text>
             </>
         }
 
@@ -96,12 +96,12 @@ export default function App() {
                 title="Generate"
                 onPress={handleReset}
             >
-              <Text style={styles.buttonText}>Reset</Text>
+                <Text style={styles.buttonText}>Reset</Text>
             </TouchableOpacity>
         }
 
-        <StatusBar style="auto" />
-      </View>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
@@ -112,43 +112,43 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'start',
   },
-  title:{
-    marginTop:16,
-    fontSize:40,
-  },
-  result:{
-    fontSize:32,
+    title:{
+      marginTop:16,
+      fontSize:40,
+    },
+    result:{
+      fontSize:32,
 
-  },
-  input:{
-    marginTop:16,
-    fontSize:32,
-    borderWidth: 2,
-    width:300,
-    borderRadius:5
-  },
-  button:{
-    fontSize:32,
-    borderWidth: 2,
-    width:300,
-    borderRadius:5,
-    backgroundColor:'#333333',
-    padding:8,
-    marginTop:32,
-    alignItems: 'center',
-  },
-  buttonText:{
-    fontSize:24,
-    color:'#fff',
-  },
-  error:{
-    fontSize:20,
-    color:'#900',
-  },
-  logo: {
-    width: 380,
-    height: 120,
-    marginTop:80,
-    marginBottom:80
-  },
+    },
+    input:{
+        marginTop:16,
+        fontSize:32,
+        borderWidth: 2,
+        width:300,
+        borderRadius:5
+    },
+    button:{
+      fontSize:32,
+        borderWidth: 2,
+        width:300,
+        borderRadius:5,
+        backgroundColor:'#333333',
+        padding:8,
+        marginTop:32,
+        alignItems: 'center',
+    },
+    buttonText:{
+      fontSize:24,
+        color:'#fff',
+    },
+    error:{
+      fontSize:20,
+        color:'#900',
+    },
+    logo: {
+        width: 380,
+        height: 120,
+        marginTop:80,
+        marginBottom:80
+    },
 });
